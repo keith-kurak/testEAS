@@ -1,0 +1,8 @@
+{
+  "name": "@test-eas/utils",
+  "version": "0.0.1",
+  "main": "./src/index.ts",
+  "react-native": "./src/index.ts",
+  "typings": "./src/index.ts",
+  "private": true
+}

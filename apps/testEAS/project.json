@@ -1,0 +1,321 @@
+{
+  "name": "testEAS",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/testEAS/src",
+  "projectType": "application",
+  "tags": ["app"],
+  "targets": {
+    "start": {
+      "executor": "@nx/react-native:start",
+      "dependsOn": ["sync-deps"],
+      "options": {
+        "port": 8081,
+        "resetCache": true
+      }
+    },
+    "update": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/testEAS",
+        "command": "eas update --channel=${channel} --message='${message}'"
+      },
+      "configurations": {
+        "preview": {
+          "command": "eas update --channel preview --message='${message}'"
+        },
+        "production": {
+          "command": "eas update --channel production --message='${message}'"
+        }
+      }
+    },
+    "run-ios": {
+      "executor": "@nx/react-native:run-ios",
+      "dependsOn": ["sync-deps"],
+      "options": {
+        "resetCache": true,
+        "scheme": "testEASProduction",
+        "mode": "Production.Debug",
+        "simulator": "iPhone 15 Pro",
+        "verbose": true,
+        "port": 8081
+      }
+    },
+    "run-ios-staging": {
+      "executor": "@nx/react-native:run-ios",
+      "dependsOn": ["sync-deps"],
+      "options": {
+        "resetCache": true,
+        "scheme": "testEASStaging",
+        "mode": "Staging.Debug",
+        "simulator": "iPhone 16",
+        "verbose": true,
+        "port": 8081
+      }
+    },
+    "run-ios-dev": {
+      "executor": "@nx/react-native:run-ios",
+      "dependsOn": ["sync-deps"],
+      "options": {
+        "resetCache": true,
+        "scheme": "testEASDevelopment",
+        "mode": "Development.Debug",
+        "simulator": "iPhone 15",
+        "verbose": true,
+        "port": 8081
+      }
+    },
+    "run-ios-dev-debug": {
+      "executor": "@nx/react-native:run-ios",
+      "dependsOn": ["sync-deps"],
+      "options": {
+        "resetCache": true,
+        "scheme": "testEASDevelopment",
+        "mode": "Development.Debug",
+        "simulator": "iPhone 15",
+        "verbose": true,
+        "port": 8081
+      },
+      "configurations": {
+        "experimental-debugger": {
+          "experimental-debugger": true
+        }
+      }
+    },
+    "run-android": {
+      "executor": "@nx/react-native:run-android",
+      "dependsOn": ["sync-deps"],
+      "options": {
+        "resetCache": true,
+        "mode": "ProductionDebug",
+        "port": 8081
+      }
+    },
+    "run-android-staging": {
+      "executor": "@nx/react-native:run-android",
+      "dependsOn": ["sync-deps"],
+      "options": {
+        "resetCache": true,
+        "mode": "StagingDebug",
+        "appIdSuffix": "staging",
+        "port": 8081
+      }
+    },
+    "run-android-dev": {
+      "executor": "@nx/react-native:run-android",
+      "dependsOn": ["sync-deps"],
+      "options": {
+        "resetCache": true,
+        "mode": "DevelopmentDebug",
+        "appIdSuffix": "development",
+        "port": 8081
+      }
+    },
+    "run-android-dev-debug": {
+      "executor": "@nx/react-native:run-android",
+      "dependsOn": ["sync-deps"],
+      "options": {
+        "resetCache": true,
+        "mode": "DevelopmentDebug",
+        "appIdSuffix": "development",
+        "port": 8081
+      },
+      "configurations": {
+        "experimental-debugger": {
+          "experimental-debugger": true
+        }
+      }
+    },
+    "build-ios": {
+      "executor": "@nx/react-native:build-ios",
+      "outputs": ["{projectRoot}/ios/build/Build"],
+      "options": {
+        "resetCache": true,
+        "scheme": "testEASProduction",
+        "mode": "Production.Release",
+        "verbose": true
+      }
+    },
+    "build-ios-staging": {
+      "executor": "@nx/react-native:build-ios",
+      "outputs": ["{projectRoot}/ios/build/Build"],
+      "options": {
+        "resetCache": true,
+        "scheme": "testEASStaging",
+        "mode": "Staging.Release",
+        "verbose": true
+      }
+    },
+    "build-ios-dev": {
+      "executor": "@nx/react-native:build-ios",
+      "outputs": ["{projectRoot}/ios/build/Build"],
+      "options": {
+        "scheme": "testEASDevelopment",
+        "mode": "Development.Release",
+        "verbose": true
+      }
+    },
+    "build-android": {
+      "executor": "@nx/react-native:build-android",
+      "dependsOn": ["sync-deps"],
+      "outputs": ["{projectRoot}/android/app/build/outputs/bundle"],
+      "options": {
+        "tasks": "bundleProductionRelease"
+      }
+    },
+    "build-android-staging": {
+      "executor": "@nx/react-native:build-android",
+      "dependsOn": ["sync-deps"],
+      "outputs": ["{projectRoot}/android/app/build/outputs/bundle"],
+      "options": {
+        "tasks": "bundleStagingRelease"
+      }
+    },
+    "build-android-dev": {
+      "executor": "@nx/react-native:build-android",
+      "dependsOn": ["sync-deps"],
+      "outputs": ["{projectRoot}/android/app/build/outputs/bundle"],
+      "options": {
+        "tasks": "bundleDevelopmentRelease"
+      }
+    },
+    "bundle-ios": {
+      "executor": "@nx/react-native:bundle",
+      "dependsOn": [],
+      "outputs": ["{options.bundleOutput}"],
+      "options": {
+        "entryFile": "src/main.tsx",
+        "platform": "ios",
+        "bundleOutput": "dist/apps/testEAS/ios/main.jsbundle",
+        "dev": false,
+        "minify": true
+      }
+    },
+    "bundle-android": {
+      "executor": "@nx/react-native:bundle",
+      "dependsOn": [],
+      "outputs": ["{options.bundleOutput}"],
+      "options": {
+        "entryFile": "src/main.tsx",
+        "platform": "android",
+        "bundleOutput": "dist/apps/testEAS/android/main.jsbundle",
+        "dev": false,
+        "minify": true
+      }
+    },
+    "pod-install": {
+      "executor": "@nx/react-native:pod-install",
+      "options": {}
+    },
+    "sync-deps": {
+      "executor": "@nx/react-native:sync-deps",
+      "options": {}
+    },
+    "ensure-symlink": {
+      "executor": "@nx/react-native:ensure-symlink",
+      "options": {}
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "fix": true,
+        "maxWarnings": 0
+      }
+    },
+    "tsc": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "node_modules/.bin/tsc --project apps/testEAS/tsconfig.spec.json --pretty --extendedDiagnostics"
+      }
+    },
+    "ci-lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "format": "json",
+        "outputFile": "apps/testEAS/report.json",
+        "maxWarnings": 0
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/testEAS/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "maxWorkers": 2,
+          "workerIdleMemoryLimit": "500Mb",
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "transifex-pull": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "txjs-cli pull --token=$TRANSIFEX_TOKEN_EU --secret=$TRANSIFEX_SECRET_EU -f=apps/testEAS/src/assets/translations/ --pretty"
+      }
+    },
+    "transifex": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "nx transifex-pull testEAS --locale=fr && nx transifex-pull testEAS --locale=es && nx transifex-pull testEAS --locale=nl && nx transifex-pull testEAS --locale=de && nx transifex-pull testEAS --locale=en_GB && nx transifex-pull testEAS --locale=pl && nx transifex-pull testEAS --locale=fi && nx transifex-pull testEAS --locale=it && cd bin/transifex/txParser && npm install && cd ../../.. && node ./bin/transifex/txParser/testEAS/index.js"
+      }
+    },
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/testEAS/web",
+        "index": "apps/testEAS/src/index.html",
+        "baseHref": "/",
+        "main": "apps/testEAS/src/main-web.tsx",
+        "tsConfig": "apps/testEAS/tsconfig.app.json",
+        "assets": ["apps/testEAS/src/favicon.ico", "apps/testEAS/src/assets"],
+        "webpackConfig": "apps/testEAS/webpack.config.js"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "production": {
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/webpack:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "testEAS:build",
+        "hmr": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "testEAS:build:development"
+        },
+        "production": {
+          "buildTarget": "testEAS:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "upgrade": {
+      "executor": "@nx/react-native:upgrade",
+      "options": {}
+    }
+  }
+}

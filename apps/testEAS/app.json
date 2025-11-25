@@ -1,4 +1,23 @@
 {
   "name": "TestEAS",
-  "displayName": "TestEAS"
+  "displayName": "TestEAS",
+  "extra": {
+    "eas": {
+      "projectId": "e21591ab-e6b1-4eae-bca7-df188a92e30d"
+    }
+  },
+  "runtimeVersion": "1.0.0",
+  "updates": {
+    "url": "https://u.expo.dev/e21591ab-e6b1-4eae-bca7-df188a92e30d"
+  },
+  "android": {
+    "package": "com.testeas"
+  },
+  "ios": {
+    "bundleIdentifier": "org.reactjs.native.example.TestEAS"
+  },
+  "experiments": {
+    "tsconfigPaths": true,
+    "autolinkingModuleResolution": true
+  }
 }

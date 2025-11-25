@@ -11,6 +11,7 @@ import {
   Linking,
 } from 'react-native';
 import Svg, { G, Path } from 'react-native-svg';
+import { getOS } from '@test-eas/utils';
 
 export const App = () => {
   const [whatsNextYCoord, setWhatsNextYCoord] = useState<number>(0);
@@ -38,7 +39,7 @@ export const App = () => {
               testID="heading"
               role="heading"
             >
-              Welcome TestEAS 👋
+              Welcome TestEAS 👋 {getOS()}
             </Text>
           </View>
           <View style={styles.section}>
