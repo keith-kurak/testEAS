@@ -19,7 +19,8 @@ To run the project:
 
 1. `yarn install`
 2. `npx nx sync-deps testEAS`
-3. `cd apps/testEAS/ios`
-4. `pod install`
-5. `cd ../../..`
-6. `yarn start`
+3. Delete `apps/testEAS/node_modules`
+4. `cd apps/testEAS/ios`
+5. `pod install`
+6. `cd ../../..`
+7. `yarn start`
