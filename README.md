@@ -1,26 +1,14 @@
 This is the minimal reproduction repo for Expo EAS Updates issues with NX monorepo.
 
-Currently we did all the fixes discussed previously:
-1. @nx/expo  (remove) from metro.config.js
-2. compilerOptions.paths (unchanged)
-3. package.json[“react-native”]: “src/index.ts"
-4. expo.experiments.autolinkingModuleResolution: true
+Currently we did all the fixes discussed previously.
 
-This fixed the error we got while running `eas update` command:
-Error: Unable to resolve module @test-eas/utils from
-<app-path>/src/main.tsx: @test-eas/utils could not be
-found within the project or in these directories:
-[expo-cli] ../../node_modules
+For now we face with issue that local asset in the project are not showing on release build. No metter where asset is located - under app directory or in libs. 
 
-Now `eas update` command works and publishes an update, but metro is not able to resolve entry file for the app in Debug and Release builds:
-<img width="395" height="841" alt="image" src="https://github.com/user-attachments/assets/b99c8edf-f801-434b-83bb-296204ae6c50" />
+Assets are being show only after publishing an update and loading this update on the device/simulator which runs release build.
 
 To run the project:
 
 1. `yarn install`
-2. `npx nx sync-deps testEAS`
-3. Delete `apps/testEAS/node_modules`
-4. `cd apps/testEAS/ios`
-5. `pod install`
-6. `cd ../../..`
-7. `yarn start`
+2. `yarn sync`
+3. `yarn start`
+4.  Run the project from XCode(Release scheme is set by default).
