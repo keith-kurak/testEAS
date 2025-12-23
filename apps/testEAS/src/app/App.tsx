@@ -12,7 +12,7 @@ import {
 import testPng from './test.png';
 import * as Updates from 'expo-updates';
 
-
+//const testPng = require('./test.png');
 export const App = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [updatesResponse, setUpdatesResponse] =

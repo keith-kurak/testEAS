@@ -6,7 +6,9 @@
     "symlink": "nx sync-deps testEAS",
     "start": "nx run testEAS:start",
     "sync": "yarn install && yarn pod",
-    "pod": "cd apps/testEAS/ios && bundle install && pod install && cd ../../.."
+    "pod": "cd apps/testEAS/ios && bundle install && pod install && cd ../../..",
+    "android": "expo run:android",
+    "ios": "expo run:ios"
   },
   "private": true,
   "dependencies": {

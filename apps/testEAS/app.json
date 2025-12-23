@@ -1,7 +1,5 @@
 {
   "name": "TestEAS",
-  "displayName": "TestEAS",
-  "entryPoint": "./src/main.tsx",
   "extra": {
     "eas": {
       "projectId": "e21591ab-e6b1-4eae-bca7-df188a92e30d"
