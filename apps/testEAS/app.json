@@ -2,13 +2,10 @@
   "name": "TestEAS",
   "extra": {
     "eas": {
-      "projectId": "e21591ab-e6b1-4eae-bca7-df188a92e30d"
+      "projectId": "16de03e7-94bd-4493-859e-294e5ebc3699"
     }
   },
   "runtimeVersion": "1.0.0",
-  "updates": {
-    "url": "https://u.expo.dev/e21591ab-e6b1-4eae-bca7-df188a92e30d"
-  },
   "android": {
     "package": "com.testeas"
   },
@@ -18,5 +15,9 @@
   "experiments": {
     "tsconfigPaths": true,
     "autolinkingModuleResolution": true
+  },
+  "owner": "keith-kurak",
+  "updates": {
+    "url": "https://u.expo.dev/16de03e7-94bd-4493-859e-294e5ebc3699"
   }
 }
