@@ -7,6 +7,15 @@ const { getDefaultConfig: getExpoConfig } = require('expo/metro-config');
 
 const expoConfig = getExpoConfig(__dirname);
 
+const uniq = (arr) => Array.from(new Set(arr));
+
+const sourceExts = uniq([
+  ...(expoConfig.resolver?.sourceExts ?? []),
+  'svg',
+  'cjs',
+  'mjs',
+]);
+
 
 /**
  * Metro configuration
